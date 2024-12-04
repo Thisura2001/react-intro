@@ -1,33 +1,35 @@
-import './App.css'
-import {useState} from "react";
+import './App.css';
+import { useState } from "react";
+import { Customer } from "./Model/Customer.ts";
+
 function App() {
+    const [customers, setCustomer] = useState<Customer[]>([]);
 
-    const [customer, setCustomer] = useState({
-        firstName: "",
-        lastName: "",
-    })
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
 
-    function handleChange() {
-        setCustomer({
-            ...customer,
-            firstName:firstName,
-            lastName: lastName
-        })
+    function addCustomer() {
+        const newCustomer = new Customer(name, email, phone);
+        setCustomer([...customers, newCustomer]);
     }
 
     return (
         <>
-            <input name='firstName' type='text' placeholder='FirstName' onChange={(e) => setFirstName(e.target.value)}  />
-            <input name='lastName' type='text' placeholder='LastName' onChange={(e) => setLastName(e.target.value)}  />
-            <br/>
-            <button onClick={handleChange}>Submit</button><br/>
-            <h2>Hello..!  {customer.firstName} {customer.lastName}</h2>
+            <input type="text" placeholder='name' onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)} />
+            <input type="number" placeholder='phone' onChange={(e) => setPhone(e.target.value)} />
+
+            <br />
+
+            <button onClick={addCustomer}>Add Customer</button>
+
+            <br />
+                {customers.map((customer, index) => (
+                       <div key={index}>{"name: "+ customer.name+  ' '+"  email: "+customer.email+' '+"  Phone: "+customer.phone}</div>
+                ))}
         </>
-    )
+    );
 }
 
-
-
-export default App
+export default App;
