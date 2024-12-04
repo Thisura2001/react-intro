@@ -1,27 +1,28 @@
 import './App.css'
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 function App() {
 
-    const Customer = {
-        firstName: '',
-        lastName: ''
-    }
+    const [customer, setCustomer] = useState({
+        firstName: "",
+        lastName: "",
+    })
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
 
-    const [customer, setCustomer] = useState(Customer)
-
-    function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleChange() {
         setCustomer({
             ...customer,
-            [event.target.name]: event.target.value
+            firstName:firstName,
+            lastName: lastName
         })
     }
 
     return (
         <>
-            <input name='firstName' type='text' placeholder='FirstName' onChange={handleChange}  />
-            <input name='lastName' type='text' placeholder='LastName' onChange={handleChange}  />
+            <input name='firstName' type='text' placeholder='FirstName' onChange={(e) => setFirstName(e.target.value)}  />
+            <input name='lastName' type='text' placeholder='LastName' onChange={(e) => setLastName(e.target.value)}  />
             <br/>
-            <button>Submit</button><br/>
+            <button onClick={handleChange}>Submit</button><br/>
             <h2>Hello..!  {customer.firstName} {customer.lastName}</h2>
         </>
     )
