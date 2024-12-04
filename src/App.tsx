@@ -13,7 +13,9 @@ function App() {
         const newCustomer = new Customer(name, email, phone);
         setCustomer([...customers, newCustomer]);
     }
-
+    function deleteCustomer() {
+        setCustomer((customers)=>customers.slice(0,-1));
+    }
     return (
         <>
             <input type="text" placeholder='name' onChange={(e) => setName(e.target.value)} />
@@ -23,11 +25,17 @@ function App() {
             <br />
 
             <button onClick={addCustomer}>Add Customer</button>
+            <button onClick={deleteCustomer}>Delete Customer</button>
 
             <br />
-                {customers.map((customer, index) => (
-                       <div key={index}>{"name: "+ customer.name+  ' '+"  email: "+customer.email+' '+"  Phone: "+customer.phone}</div>
-                ))}
+            {customers.map((customer, index) => (
+                <div key={index}>
+                    <p>Name: {customer.name}</p>
+                    <p>Email: {customer.email}</p>
+                    <p>Phone: {customer.phone}</p>
+                    <hr />
+                </div>
+            ))}
         </>
     );
 }
