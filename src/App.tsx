@@ -4,18 +4,24 @@ import { Customer } from "./Model/Customer.ts";
 
 function App() {
     const [customers, setCustomer] = useState<Customer[]>([]);
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [emailToDelete, setEmailToDelete] = useState('');
 
     function addCustomer() {
         const newCustomer = new Customer(name, email, phone);
         setCustomer([...customers, newCustomer]);
     }
+
     function deleteCustomer() {
-        setCustomer((customers)=>customers.slice(0,-1));
+        setCustomer((customers) => customers.slice(0, -1));
     }
+
+    function deleteByEmail() {
+        setCustomer((customers) => customers.filter((customer) => customer.email !== emailToDelete));
+    }
+
     return (
         <>
             <input type="text" placeholder='name' onChange={(e) => setName(e.target.value)} />
@@ -26,6 +32,16 @@ function App() {
 
             <button onClick={addCustomer}>Add Customer</button>
             <button onClick={deleteCustomer}>Delete Customer</button>
+
+            <br />
+            {/* Input field for email to delete */}
+            <input
+                type="text"
+                placeholder="Enter email to delete"
+                value={emailToDelete}
+                onChange={(e) => setEmailToDelete(e.target.value)}
+            />
+            <button onClick={deleteByEmail}>Delete By Email</button>
 
             <br />
             {customers.map((customer, index) => (
