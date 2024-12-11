@@ -5,6 +5,7 @@ import {AddCustomer} from "./Pages/AddCustomer.tsx";
 import {DeleteCustomer} from "./Pages/DeleteCustomer.tsx";
 import {UpdateCustomer} from "./Pages/UpdateCustomer.tsx";
 import {RootLayOut} from "./component/RootLayOut.tsx";
+import {CustomerProvider} from "./component/CustomerProvider.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -22,7 +23,9 @@ function App() {
     ])
     return (
         <>
-            <RouterProvider router={routes}></RouterProvider>
+            <CustomerProvider>
+                <RouterProvider router={routes}></RouterProvider>
+            </CustomerProvider>
         </>
     )
 }
