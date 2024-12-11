@@ -1,4 +1,6 @@
-export default function DashboardComponent(){
+
+
+export function DashBoard() {
     return(
         <>
             <h1>DashBoard</h1>
