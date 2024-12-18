@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useState} from "react";
+import {createContext, useState} from "react";
 import {Customer} from "../Model/Customer.ts";
 
 export const CustomerContext = createContext()
