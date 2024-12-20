@@ -1,6 +1,5 @@
 import {useContext, useState} from "react";
 import {CustomerContext} from "../component/CustomerProvider.tsx";
-import {Customer} from "../Model/Customer.ts";
 import {useNavigate} from "react-router";
 
 
