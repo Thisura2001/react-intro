@@ -1,18 +1,7 @@
 import './App.css'
 import {useReducer} from "react";
+import CountReducer, {initialState} from "./Redusers/CountReducer.ts";
 
-const initialState = 0;
-
-function CountReducer(state = initialState, action:{type:string, payload:number}) {
-    switch(action.type) {
-        case 'ADD_COUNT':
-            return state + action.payload;
-            case 'REMOVE_COUNT':
-                return state - action.payload;
-                default:
-                    return state;
-    }
-}
 function App() {
     const [count, dispatch] = useReducer(CountReducer,initialState)
     return (
