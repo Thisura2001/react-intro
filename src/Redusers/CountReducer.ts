@@ -1,11 +1,19 @@
-export const initialState = 0;
-export default function CountReducer(state = initialState, action:{type:string, payload:number}) {
-    switch(action.type) {
-        case 'ADD_COUNT':
-            return state + action.payload;
-        case 'REMOVE_COUNT':
-            return state - action.payload;
+export const initialState = {
+    firstName: '',
+    lastName: '',
+};
+
+const CountReducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_NAMES':
+            return {
+                ...state,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+            };
         default:
             return state;
     }
-}
+};
+
+export default CountReducer;
