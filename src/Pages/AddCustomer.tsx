@@ -1,7 +1,8 @@
-import {Link, useNavigate} from "react-router";
+import { useNavigate} from "react-router";
 import {useContext, useState} from "react";
 import {CustomerContext} from "../component/CustomerProvider.tsx";
 import {Customer} from "../Model/Customer.ts";
+
 
 export function AddCustomer(){
     const navigate = useNavigate();

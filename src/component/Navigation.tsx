@@ -3,12 +3,21 @@ import {Link} from "react-router";
 export function Navigation() {
     return(
         <>
-            <header>
-                <nav>
-                    <ul>
-                        <Link to="/add">AddCustomer</Link>
-                        <Link to="/delete"> | DeleteCustomer</Link>
-                        <Link to="/update"> | updateCustomer</Link>
+            <header className="bg-blue-600 shadow-lg">
+                <nav className="px-4 py-3">
+                    <ul className="flex text-white space-x-8">
+                        <Link to="/" className="custom-link">
+                            Dashboard
+                        </Link>
+                        <Link to="/add" className="custom-link">
+                            Add
+                        </Link>
+                        <Link to="/delete" className="custom-link">
+                            Delete
+                        </Link>
+                        <Link to="/update" className="custom-link">
+                            Update
+                        </Link>
                     </ul>
                 </nav>
             </header>
