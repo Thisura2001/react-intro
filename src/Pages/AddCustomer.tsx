@@ -20,10 +20,10 @@ export function AddCustomer() {
 
     return (
         <>
-            <div className="grid md:grid-cols-2 gap-6 m-10">
+            <div className="grid md:grid-cols-2 gap-9 m-10">
                 {/* Left side */}
-                <div>
-                    <header>
+                <div className="border rounded-lg p-6 shadow-lg">
+                    <header className="mb-6">
                         <h1 className="font-extrabold text-4xl text-green-500">Add Customer</h1>
                     </header>
                     <div className="grid md:grid-cols-2 gap-6 mt-6">
@@ -61,8 +61,8 @@ export function AddCustomer() {
                 </div>
 
                 {/* Right side */}
-                <div>
-                    <header>
+                <div className="border rounded-lg p-6 shadow-lg">
+                    <header className="mb-6">
                         <h1 className="font-extrabold text-4xl text-green-500">Add Items</h1>
                     </header>
                     <div className="mt-6">
@@ -70,7 +70,7 @@ export function AddCustomer() {
                         <input type="text" placeholder="Enter the item price" className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"/>
                         <input type="text" placeholder="Enter the item Quntity" className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"/>
 
-                        <button className="mt-6 w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200">Add</button>
+                        <button className="mt-6 w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200">Add Items</button>
                     </div>
                 </div>
             </div>
