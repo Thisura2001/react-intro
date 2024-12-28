@@ -1,17 +1,19 @@
-import { useContext, useState } from "react";
+import {useContext, useReducer, useState} from "react";
 import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { useNavigate } from "react-router";
+import {Customer} from "../Model/Customer.ts";
 
 export function DeleteCustomer() {
     const navigate = useNavigate();
-    const [customers, setCustomers] = useContext(CustomerContext);
+    const [customers, disptch] = useContext(CustomerContext);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
     function DeleteCustomers() {
-        setCustomers((customers) => customers.slice(0, -1));
+        const deleteCustomer =new Customer(name,email,phone,address);
+        disptch({type:'DELETE_CUSTOMER',payload:deleteCustomer});
         navigate("/");
     }
 
