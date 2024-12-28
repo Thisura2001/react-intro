@@ -3,7 +3,7 @@ import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { useNavigate } from "react-router";
 import {Customer} from "../Model/Customer.ts";
 
-export function DeleteCustomer() {
+export function Delete() {
     const navigate = useNavigate();
     const [customers, disptch] = useContext(CustomerContext);
     const [name, setName] = useState("");

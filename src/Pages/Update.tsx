@@ -3,7 +3,7 @@ import {useContext, useState} from "react";
 import {CustomerContext} from "../Store/CustomerProvider.tsx";
 import {Customer} from "../Model/Customer.ts";
 
-export function UpdateCustomer() {
+export function Update() {
     const navigate = useNavigate();
     const [customers,dispatch]=useContext(CustomerContext)
     const [name, setName] = useState('')

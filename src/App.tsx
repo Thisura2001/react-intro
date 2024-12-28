@@ -1,11 +1,12 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router";
 import {DashBoard} from "./Pages/DashBoard.tsx";
-import {AddCustomer} from "./Pages/AddCustomer.tsx";
-import {DeleteCustomer} from "./Pages/DeleteCustomer.tsx";
-import {UpdateCustomer} from "./Pages/UpdateCustomer.tsx";
+import {Add} from "./Pages/Add.tsx";
+import {Delete} from "./Pages/Delete.tsx";
+import {Update} from "./Pages/Update.tsx";
 import {RootLayOut} from "./component/RootLayOut.tsx";
 import {CustomerProvider} from "./Store/CustomerProvider.tsx";
+import {ItemProvider} from "./Store/ItemProvider.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -14,9 +15,9 @@ function App() {
             element:<RootLayOut/>,
             children:[
                 {path:'',element:<DashBoard/>},
-                {path:'/add',element:<AddCustomer/>},
-                {path:'/delete',element:<DeleteCustomer/>},
-                {path:'/update',element:<UpdateCustomer/>}
+                {path:'/add',element:<Add/>},
+                {path:'/delete',element:<Delete/>},
+                {path:'/update',element:<Update/>}
             ]
 
         },
@@ -24,7 +25,9 @@ function App() {
     return (
         <>
             <CustomerProvider>
+                <ItemProvider>
                 <RouterProvider router={routes}></RouterProvider>
+                </ItemProvider>
             </CustomerProvider>
         </>
     )

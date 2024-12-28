@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { Customer } from "../Model/Customer.ts";
+import {Items} from "../Model/Items.ts";
+import {itemContext} from "../Store/ItemProvider.tsx";
 
 export function DashBoard() {
     const [customers] = useContext(CustomerContext);
+    const [items] = useContext(itemContext);
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
@@ -51,13 +54,21 @@ export function DashBoard() {
                     <table className="table-auto border-collapse border border-gray-300 w-full text-left">
                         <thead>
                         <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-4 py-2">Item Id</th>
                             <th className="border border-gray-300 px-4 py-2">Item Name</th>
                             <th className="border border-gray-300 px-4 py-2">Item Price</th>
                             <th className="border border-gray-300 px-4 py-2">Item Quantity</th>
                         </tr>
                         </thead>
                         <tbody>
-
+                        {items.map((item: Items) => (
+                            <tr key={item.id} className="hover:bg-gray-50">
+                                <td className="border border-gray-300 px-4 py-2">{item.id}</td>
+                                <td className="border border-gray-300 px-4 py-2">{item.name}</td>
+                                <td className="border border-gray-300 px-4 py-2">{item.price}</td>
+                                <td className="border border-gray-300 px-4 py-2">{item.quantity}</td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
