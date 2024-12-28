@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import { useContext, useState } from "react";
-import { CustomerContext } from "../component/CustomerProvider.tsx";
+import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { Customer } from "../Model/Customer.ts";
 
 export function AddCustomer() {
     const navigate = useNavigate();
-    const [customers, setCustomers] = useContext(CustomerContext);
+    const [customers, dispatch] = useContext(CustomerContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ export function AddCustomer() {
 
     function handleSubmit() {
         const newCustomer = new Customer(name, email, phone, address);
-        setCustomers((customers: Customer[]) => [...customers, newCustomer]);
+        dispatch({type:'ADD_CUSTOMER',payload:newCustomer});
         navigate("/");
     }
 

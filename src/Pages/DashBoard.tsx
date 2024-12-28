@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CustomerContext } from "../component/CustomerProvider.tsx";
+import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { Customer } from "../Model/Customer.ts";
 
 export function DashBoard() {

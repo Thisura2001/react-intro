@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CustomerContext } from "../component/CustomerProvider.tsx";
+import { CustomerContext } from "../Store/CustomerProvider.tsx";
 import { useNavigate } from "react-router";
 
 export function DeleteCustomer() {

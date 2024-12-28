@@ -1,6 +1,6 @@
 import {Link, useNavigate} from "react-router";
 import {useContext, useState} from "react";
-import {CustomerContext} from "../component/CustomerProvider.tsx";
+import {CustomerContext} from "../Store/CustomerProvider.tsx";
 
 export function UpdateCustomer() {
     const navigate = useNavigate();
