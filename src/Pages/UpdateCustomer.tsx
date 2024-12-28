@@ -1,20 +1,19 @@
 import {Link, useNavigate} from "react-router";
 import {useContext, useState} from "react";
 import {CustomerContext} from "../Store/CustomerProvider.tsx";
+import {Customer} from "../Model/Customer.ts";
 
 export function UpdateCustomer() {
     const navigate = useNavigate();
-    const [customers,setCustomers]=useContext(CustomerContext)
+    const [customers,dispatch]=useContext(CustomerContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
 
     function UpdateCustomers() {
-        const newCustomer = customers.map(
-            (customer)=>customer.email=== email?
-                {...customer,name:name,phone:phone,address:address,email:email}:customer);
-        setCustomers(newCustomer);
+        const updateCustomer = new Customer(name,email,phone,address)
+        dispatch({type:'UPDATE_CUSTOMER',payload:updateCustomer});
         navigate("/");
 
     }
