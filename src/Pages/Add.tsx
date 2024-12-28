@@ -8,13 +8,12 @@ import {Items} from "../Model/Items.ts";
 export function Add() {
     const navigate = useNavigate();
     const [customers, dispatch] = useContext(CustomerContext);
-    const [items,itemDispatch] = useContext(itemContext);
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
+    const [items,itemDispatch] = useContext(itemContext);
     const [id, setId] = useState("");
     const [itemName, setItemName] = useState("");
     const [price, setPrice] = useState("");
