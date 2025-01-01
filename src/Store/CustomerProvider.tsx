@@ -3,7 +3,7 @@ import {customersReducer, initialState} from "../Reducers/CustomerReducer.ts";
 
 export const CustomerContext = createContext()
 export function CustomerProvider({ children }) {
-    const [customers,dispatch] = useReducer(customersReducer,initialState);
+    const [customers,dispatch] = useReducer(customersReducer,initialState);//customersReducer: A reducer function that defines how the state changes based on dispatched actions.
 
     return (
         <>
