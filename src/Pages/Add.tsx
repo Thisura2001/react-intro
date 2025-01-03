@@ -3,8 +3,8 @@ import {  useState } from "react";
 import { Customer } from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {addCustomer} from "../Reducers/CustomerSlice.ts";
-import {addItem} from "../Reducers/ItemSlice.ts";
+import {addCustomer} from "../Slicers/CustomerSlice.ts";
+import {addItem} from "../Slicers/ItemSlice.ts";
 
 export function Add() {
     const navigate = useNavigate();

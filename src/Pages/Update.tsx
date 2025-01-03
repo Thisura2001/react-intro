@@ -1,8 +1,8 @@
 import {useNavigate} from "react-router";
 import { useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateCustomer} from "../Reducers/CustomerSlice.ts";
-import {updateItem} from "../Reducers/ItemSlice.ts";
+import {updateCustomer} from "../Slicers/CustomerSlice.ts";
+import {updateItem} from "../Slicers/ItemSlice.ts";
 
 export function Update() {
     const navigate = useNavigate();

@@ -1,7 +1,7 @@
 
 import {configureStore} from "@reduxjs/toolkit";
-import CustomerSlice from "../Reducers/CustomerSlice.ts";
-import ItemSlice from "../Reducers/ItemSlice.ts";
+import CustomerSlice from "../Slicers/CustomerSlice.ts";
+import ItemSlice from "../Slicers/ItemSlice.ts";
 
 export const store = configureStore({
     reducer: {

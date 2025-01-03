@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import {Customer} from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {addCustomer, deleteCustomer} from "../Reducers/CustomerSlice.ts";
-import {deleteItem} from "../Reducers/ItemSlice.ts";
+import {addCustomer, deleteCustomer} from "../Slicers/CustomerSlice.ts";
+import {deleteItem} from "../Slicers/ItemSlice.ts";
 
 export function Delete() {
     const navigate = useNavigate();
