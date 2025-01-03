@@ -1,19 +1,23 @@
 import { useNavigate } from "react-router";
-import { useContext, useState } from "react";
-import { CustomerContext } from "../Store/CustomerProvider.tsx";
+import {  useState } from "react";
 import { Customer } from "../Model/Customer.ts";
-import {itemContext} from "../Store/ItemProvider.tsx";
 import {Items} from "../Model/Items.ts";
+import {useDispatch, useSelector} from "react-redux";
 
 export function Add() {
     const navigate = useNavigate();
-    const [customers, dispatch] = useContext(CustomerContext);
+
+    const customers =useSelector(state => state.customers)
+    const dispatch = useDispatch();
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
-    const [items,itemDispatch] = useContext(itemContext);
+    const items = useSelector(state=>state.items)
+    const itemDispatch = useDispatch();
+
     const [id, setId] = useState("");
     const [itemName, setItemName] = useState("");
     const [price, setPrice] = useState("");

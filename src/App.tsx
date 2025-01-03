@@ -5,8 +5,6 @@ import {Add} from "./Pages/Add.tsx";
 import {Delete} from "./Pages/Delete.tsx";
 import {Update} from "./Pages/Update.tsx";
 import {RootLayOut} from "./component/RootLayOut.tsx";
-import {CustomerProvider} from "./Store/CustomerProvider.tsx";
-import {ItemProvider} from "./Store/ItemProvider.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -24,11 +22,7 @@ function App() {
     ])
     return (
         <>
-            <CustomerProvider>
-                <ItemProvider>
-                <RouterProvider router={routes}></RouterProvider>
-                </ItemProvider>
-            </CustomerProvider>
+            <RouterProvider router={routes}></RouterProvider>
         </>
     )
 }

@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import { CustomerContext } from "../Store/CustomerProvider.tsx";
+
 import { Customer } from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
-import {itemContext} from "../Store/ItemProvider.tsx";
+import {useSelector} from "react-redux";
 
 export function DashBoard() {
-    const [customers] = useContext(CustomerContext);
-    const [items] = useContext(itemContext);
+    const customers = useSelector(state => state.customers)
+    const items = useSelector(state => state.items)
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
