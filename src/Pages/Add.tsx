@@ -3,6 +3,8 @@ import {  useState } from "react";
 import { Customer } from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
 import {useDispatch, useSelector} from "react-redux";
+import {addCustomer} from "../Reducers/CustomerSlice.ts";
+import {addItem} from "../Reducers/ItemSlice.ts";
 
 export function Add() {
     const navigate = useNavigate();
@@ -24,14 +26,23 @@ export function Add() {
     const [quantity, setQuantity] = useState("");
 
     function handleSubmit() {
-        const newCustomer = new Customer(name, email, phone, address);
-        dispatch({type:'ADD_CUSTOMER',payload:newCustomer});
+        dispatch(addCustomer({
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+        }));
+
         navigate("/");
     }
 
     function addItems() {
-        const newItem =  new Items(id,itemName,price,quantity)
-        itemDispatch({type:'ADD_ITEM',payload:newItem});
+        itemDispatch(addItem({
+            id: id,
+            itemName: itemName,
+            price: price,
+            quantity: quantity,
+        }))
         navigate("/");
     }
 

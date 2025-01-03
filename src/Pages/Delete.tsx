@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import {Customer} from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
 import {useDispatch, useSelector} from "react-redux";
+import {addCustomer, deleteCustomer} from "../Reducers/CustomerSlice.ts";
+import {deleteItem} from "../Reducers/ItemSlice.ts";
 
 export function Delete() {
     const navigate = useNavigate();
@@ -23,14 +25,22 @@ export function Delete() {
     const [quantity, setQuantity] = useState("");
 
     function DeleteCustomers() {
-        const deleteCustomer =new Customer(name,email,phone,address);
-        dispatch({type:'DELETE_CUSTOMER',payload:deleteCustomer});
+        dispatch(deleteCustomer({
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+        }))
         navigate("/");
     }
 
     function DeleteItems() {
-        const deleteItem = new Items(id,itemName,price,quantity);
-        itemDispatch({type:'DELETE_ITEM',payload:deleteItem});
+        itemDispatch(deleteItem({
+            id: id,
+            itemName: itemName,
+            price: price,
+            quantity: quantity,
+        }));
         navigate("/");
     }
 

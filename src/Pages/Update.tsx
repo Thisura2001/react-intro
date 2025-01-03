@@ -1,8 +1,8 @@
 import {useNavigate} from "react-router";
-import {useContext, useState} from "react";
-import {Customer} from "../Model/Customer.ts";
-import {Items} from "../Model/Items.ts";
+import { useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {updateCustomer} from "../Reducers/CustomerSlice.ts";
+import {updateItem} from "../Reducers/ItemSlice.ts";
 
 export function Update() {
     const navigate = useNavigate();
@@ -23,15 +23,23 @@ export function Update() {
     const [quantity, setQuantity] = useState("");
 
     function UpdateCustomers() {
-        const updateCustomer = new Customer(name,email,phone,address)
-        dispatch({type:'UPDATE_CUSTOMER',payload:updateCustomer});
+        dispatch(updateCustomer({
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+        }))
         navigate("/");
 
     }
 
     function updateItems() {
-        const newItem =  new Items(id,itemName,price,quantity)
-        itemDispatch({type:'UPDATE_ITEM',payload:newItem});
+        itemDispatch(updateItem({
+            id: id,
+            itemName: itemName,
+            price: price,
+            quantity: quantity,
+        }))
         navigate("/");
     }
 
