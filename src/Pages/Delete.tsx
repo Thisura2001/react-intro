@@ -5,16 +5,12 @@ import {Items} from "../Model/Items.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {addCustomer, deleteCustomer} from "../Slicers/CustomerSlice.ts";
 import {deleteItem} from "../Slicers/ItemSlice.ts";
+import {AppDispatch} from "../Store/Store.ts";
 
 export function Delete() {
     const navigate = useNavigate();
-    const customers =useSelector(state => state.customers)
-    const dispatch = useDispatch();
-
-    const [name, setName] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
 
     const items = useSelector(state=>state.items)
     const itemDispatch = useDispatch();
@@ -25,12 +21,7 @@ export function Delete() {
     const [quantity, setQuantity] = useState("");
 
     function DeleteCustomers() {
-        dispatch(deleteCustomer({
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
-        }))
+        dispatch(deleteCustomer(email))
         navigate("/");
     }
 
@@ -70,12 +61,6 @@ export function Delete() {
                             placeholder="Phone"
                             className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setPhone(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setAddress(e.target.value)}
                         />
                         <button
                             onClick={DeleteCustomers}

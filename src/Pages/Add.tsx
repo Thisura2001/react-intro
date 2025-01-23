@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router";
 import {  useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addCustomer} from "../Slicers/CustomerSlice.ts";
+import {saveCustomer} from "../Slicers/CustomerSlice.ts";
 import {addItem} from "../Slicers/ItemSlice.ts";
+import {AppDispatch} from "../Store/Store.ts";
+import {Customer} from "../Model/Customer.ts";
 
 export function Add() {
     const navigate = useNavigate();
-
-    const customers =useSelector(state => state.customers)
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
 
     const items = useSelector(state=>state.items)
     const itemDispatch = useDispatch();
@@ -24,13 +23,8 @@ export function Add() {
     const [quantity, setQuantity] = useState("");
 
     function handleSubmit() {
-        dispatch(addCustomer({
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
-        }));
-
+        const newCustomer = new Customer(name, email, phone);
+        dispatch(saveCustomer(newCustomer));
         navigate("/");
     }
 
@@ -70,12 +64,6 @@ export function Add() {
                             placeholder="Phone"
                             className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setPhone(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setAddress(e.target.value)}
                         />
                         <button
                             onClick={handleSubmit}

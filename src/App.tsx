@@ -5,6 +5,8 @@ import {Add} from "./Pages/Add.tsx";
 import {Delete} from "./Pages/Delete.tsx";
 import {Update} from "./Pages/Update.tsx";
 import {RootLayOut} from "./component/RootLayOut.tsx";
+import {Provider} from "react-redux";
+import {store} from "./Store/Store.ts";
 
 function App() {
     const routes = createBrowserRouter([
@@ -22,7 +24,9 @@ function App() {
     ])
     return (
         <>
-            <RouterProvider router={routes}></RouterProvider>
+            <Provider store={store}>
+                <RouterProvider router={routes} />
+            </Provider>
         </>
     )
 }

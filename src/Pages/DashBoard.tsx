@@ -1,11 +1,22 @@
 
 import { Customer } from "../Model/Customer.ts";
 import {Items} from "../Model/Items.ts";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch} from "../Store/Store.ts";
+import {useEffect} from "react";
+import {getCustomer} from "../Slicers/CustomerSlice.ts";
 
 export function DashBoard() {
+    const dispatch = useDispatch<AppDispatch>();
+
     const customers = useSelector(state => state.customers)
     const items = useSelector(state => state.items)
+
+    useEffect(() => {
+        if (customers.length === 0){
+            dispatch(getCustomer())
+        }
+    }, [dispatch,customers.length]);
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
@@ -23,7 +34,6 @@ export function DashBoard() {
                             <th className="border border-gray-300 px-4 py-2">Name</th>
                             <th className="border border-gray-300 px-4 py-2">Email</th>
                             <th className="border border-gray-300 px-4 py-2">Phone</th>
-                            <th className="border border-gray-300 px-4 py-2">Address</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,9 +47,6 @@ export function DashBoard() {
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
                                     {customer.phone}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {customer.address}
                                 </td>
                             </tr>
                         ))}

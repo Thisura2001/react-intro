@@ -3,16 +3,16 @@ import { useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateCustomer} from "../Slicers/CustomerSlice.ts";
 import {updateItem} from "../Slicers/ItemSlice.ts";
+import {AppDispatch} from "../Store/Store.ts";
+import {Customer} from "../Model/Customer.ts";
 
 export function Update() {
     const navigate = useNavigate();
-    const customers =useSelector(state => state.customers)
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [address, setAddress] = useState('')
 
     const items = useSelector(state=>state.items)
     const itemDispatch = useDispatch();
@@ -23,12 +23,8 @@ export function Update() {
     const [quantity, setQuantity] = useState("");
 
     function UpdateCustomers() {
-        dispatch(updateCustomer({
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
-        }))
+        const updated = new Customer(name,email,phone);
+        dispatch(updateCustomer(updated));
         navigate("/");
 
     }
@@ -68,12 +64,6 @@ export function Update() {
                             placeholder="Phone"
                             className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setPhone(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setAddress(e.target.value)}
                         />
                         <button
                             onClick={UpdateCustomers}

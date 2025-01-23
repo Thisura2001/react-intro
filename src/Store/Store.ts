@@ -9,3 +9,4 @@ export const store = configureStore({
         items:ItemSlice
     }
 });
+export type AppDispatch =typeof store.dispatch;
