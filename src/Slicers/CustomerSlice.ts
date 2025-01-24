@@ -34,7 +34,7 @@ export const updateCustomer = createAsyncThunk(
     'customers/updateCustomer',
     async (customer:Customer)=>{
         try {
-            const response = await api.put(`/update/${customer.email}`);
+            const response = await api.put(`/update/${customer.email}`,customer);
             return response.data;
         }catch (err){
             console.log(err)
