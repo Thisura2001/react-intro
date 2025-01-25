@@ -57,9 +57,6 @@ const CustomerSlice = createSlice({
     name:'customers',
     initialState:initialState,
     reducers:{
-        addCustomer:(state,action:PayloadAction<Customer>)=>{
-            state.push(action.payload);
-        }
     },
     extraReducers:(builder)=>{
         builder
@@ -111,5 +108,4 @@ const CustomerSlice = createSlice({
 
     }
 });
-export const{addCustomer}=CustomerSlice.actions;
 export default CustomerSlice.reducer;

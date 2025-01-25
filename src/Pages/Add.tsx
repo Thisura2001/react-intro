@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router";
 import {  useState } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {saveCustomer} from "../Slicers/CustomerSlice.ts";
-import {addItem} from "../Slicers/ItemSlice.ts";
 import {AppDispatch} from "../Store/Store.ts";
 import {Customer} from "../Model/Customer.ts";
+import {Items} from "../Model/Items.ts";
+import {saveItem} from "../Slicers/ItemSlice.ts";
 
 export function Add() {
     const navigate = useNavigate();
@@ -14,10 +15,9 @@ export function Add() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
-    const items = useSelector(state=>state.items)
-    const itemDispatch = useDispatch();
 
-    const [id, setId] = useState("");
+    const itemDispatch = useDispatch<AppDispatch>();
+
     const [itemName, setItemName] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
@@ -29,12 +29,8 @@ export function Add() {
     }
 
     function addItems() {
-        itemDispatch(addItem({
-            id: id,
-            itemName: itemName,
-            price: price,
-            quantity: quantity,
-        }))
+        const newItem = new Items(itemName,price,quantity);
+        itemDispatch(saveItem(newItem))
         navigate("/");
     }
 
@@ -80,11 +76,6 @@ export function Add() {
                         <h1 className="font-extrabold text-4xl text-green-500">Add Items</h1>
                     </header>
                     <div className="mt-6">
-                        <input type="text"
-                               placeholder="Enter the item Id"
-                               className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"
-                               onChange={(e) => setId(e.target.value)}
-                        />
                         <input type="text"
                                placeholder="Enter the item Name"
                                className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"

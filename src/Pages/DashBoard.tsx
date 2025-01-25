@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../Store/Store.ts";
 import {useEffect} from "react";
 import {getCustomer} from "../Slicers/CustomerSlice.ts";
+import {getAllItems} from "../Slicers/ItemSlice.ts";
 
 export function DashBoard() {
     const dispatch = useDispatch<AppDispatch>();
@@ -17,6 +18,11 @@ export function DashBoard() {
             dispatch(getCustomer())
         }
     }, [dispatch,customers.length]);
+    useEffect(() => {
+        if (items.length === 0){
+            dispatch(getAllItems())
+        }
+    }, [dispatch,items.length]);
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
@@ -60,7 +66,6 @@ export function DashBoard() {
                     <table className="table-auto border-collapse border border-gray-300 w-full text-left">
                         <thead>
                         <tr className="bg-gray-100">
-                            <th className="border border-gray-300 px-4 py-2">Item Id</th>
                             <th className="border border-gray-300 px-4 py-2">Item Name</th>
                             <th className="border border-gray-300 px-4 py-2">Item Price</th>
                             <th className="border border-gray-300 px-4 py-2">Item Quantity</th>
@@ -68,8 +73,7 @@ export function DashBoard() {
                         </thead>
                         <tbody>
                         {items.map((item: Items) => (
-                            <tr key={item.id} className="hover:bg-gray-50">
-                                <td className="border border-gray-300 px-4 py-2">{item.id}</td>
+                            <tr key={item.name} className="hover:bg-gray-50">
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.price}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.quantity}</td>

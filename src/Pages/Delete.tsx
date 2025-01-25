@@ -1,9 +1,7 @@
-import {useContext, useState} from "react";
+import {useState} from "react";
 import { useNavigate } from "react-router";
-import {Customer} from "../Model/Customer.ts";
-import {Items} from "../Model/Items.ts";
-import {useDispatch, useSelector} from "react-redux";
-import {addCustomer, deleteCustomer} from "../Slicers/CustomerSlice.ts";
+import {useDispatch} from "react-redux";
+import {deleteCustomer} from "../Slicers/CustomerSlice.ts";
 import {deleteItem} from "../Slicers/ItemSlice.ts";
 import {AppDispatch} from "../Store/Store.ts";
 
@@ -12,13 +10,10 @@ export function Delete() {
     const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState("");
 
-    const items = useSelector(state=>state.items)
-    const itemDispatch = useDispatch();
+    const itemDispatch = useDispatch<AppDispatch>();
 
-    const [id, setId] = useState("");
+
     const [itemName, setItemName] = useState("");
-    const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
 
     function DeleteCustomers() {
         dispatch(deleteCustomer(email))
@@ -26,12 +21,7 @@ export function Delete() {
     }
 
     function DeleteItems() {
-        itemDispatch(deleteItem({
-            id: id,
-            itemName: itemName,
-            price: price,
-            quantity: quantity,
-        }));
+        itemDispatch(deleteItem(itemName))
         navigate("/");
     }
 
@@ -48,7 +38,6 @@ export function Delete() {
                             type="text"
                             placeholder="Name"
                             className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setName(e.target.value)}
                         />
                         <input
                             type="email"
@@ -60,7 +49,6 @@ export function Delete() {
                             type="text"
                             placeholder="Phone"
                             className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setPhone(e.target.value)}
                         />
                         <button
                             onClick={DeleteCustomers}
@@ -78,11 +66,6 @@ export function Delete() {
                     </header>
                     <div className="grid gap-6">
                         <input type="text"
-                               placeholder="Enter the item Id"
-                               className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"
-                               onChange={(e) => setId(e.target.value)}
-                        />
-                        <input type="text"
                                placeholder="Enter the item Name"
                                className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"
                                onChange={(e) => setItemName(e.target.value)}
@@ -90,12 +73,10 @@ export function Delete() {
                         <input type="text"
                                placeholder="Enter the item price"
                                className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"
-                               onChange={(e) => setPrice(e.target.value)}
                         />
                         <input type="text"
                                placeholder="Enter the item Quntity"
                                className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 m-4"
-                               onChange={(e) => setQuantity(e.target.value)}
                         />
                         <button
                             className="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200"
